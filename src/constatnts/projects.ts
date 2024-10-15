@@ -5,6 +5,8 @@ import ocean from "../../public/projects/ocean.png";
 import ldrsi from "../../public/projects/ildrs.png";
 import grinding from "../../public/projects/grinding.png";
 import weather from "../../public/projects/weather.png";
+import farm from "../../public/projects/farm.png";
+
 export const projects: project[] = [
   {
     image: e_com,
@@ -46,6 +48,13 @@ export const projects: project[] = [
     title: "Weather App",
     description:
       "A weather web app built using Next.js, TypeScript, and pure CSS, using the OpenWeatherMap API to display real-time weather data for different locations.",
+    url: "https://github.com/Bouchali-Aymen/Weather-Web-Application",
+  },
+  {
+    image: farm,
+    title: "Mazraati",
+    description:
+      "Developed an end-to-end web application solution to help a client firm efficiently manage their farm operations. Built using Next.js,CSS for forntend and Node.js and Express.js and MySQL for backend ",
     url: "https://github.com/Bouchali-Aymen/Weather-Web-Application",
   },
 ];
