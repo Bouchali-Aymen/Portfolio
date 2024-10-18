@@ -10,7 +10,11 @@ import {
 } from "@react-email/components";
 import { ContactEmailProps } from "../types/interfaces";
 
-export const EmailTemplate = ({ body }) => {
+interface EmailTemplateProps {
+  body: ContactEmailProps;
+}
+
+export const EmailTemplate: React.FC<EmailTemplateProps> = ({ body }) => {
   const containerStyle = {
     margin: "0 auto",
     padding: "0 1.25rem",
