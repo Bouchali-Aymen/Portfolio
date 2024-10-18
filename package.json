@@ -9,12 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-email/components": "^0.0.25",
     "caniuse-lite": "^1.0.30001660",
     "lucide-react": "^0.397.0",
     "next": "^14.2.11",
     "postcss-preset-env": "^10.0.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-email": "^3.0.1",
+    "react-hot-toast": "^2.4.1",
+    "react-toastify": "^10.0.6",
+    "resend": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -1,15 +1,103 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  ChangeEvent,
+  FormEvent,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import Image from "next/image";
 import facebook from "../../../public/facebook.png";
 import linkedin from "../../../public/linkedin.png";
-import twitter from "../../../public/twitter.png";
+import github from "../../../public/github.png";
 import Link from "next/link";
+import { ContactEmailProps } from "../../types/interfaces";
+import "react-toastify/dist/ReactToastify.css";
+import toast, { Toaster } from "react-hot-toast";
 
 const Contact = () => {
   const animationRef = useRef<HTMLDivElement>(null); // Separate ref for animation trigger
   const [isVisible, setIsVisible] = useState(false);
+  const [formData, setFormData] = useState<ContactEmailProps>({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
 
+  const notify = (code: boolean) => {
+    if (code) {
+      toast.success("Email sent successfully", {
+        position: "top-center",
+        style: {
+          marginTop: "10vh",
+          zIndex: 9999,
+        },
+      });
+    } else {
+      toast.error("There was a problem sending email. Please try again!", {
+        position: "top-center",
+        style: {
+          marginTop: "10vh",
+          zIndex: 9999,
+        },
+      });
+    }
+  };
+
+  const [isSending, setIsSending] = useState<boolean>(false);
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev: ContactEmailProps) => ({ ...prev, [name]: value }));
+    console.log(formData);
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!formData.name || !formData.email || !formData.message) {
+      console.log("Full Name, Email, and Message are required fields");
+      return;
+    }
+
+    try {
+      setIsSending(true);
+      const response = await fetch("/api/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name, // Send fullName
+          email: formData.email,
+          subject: formData.subject, // Send subject
+          message: formData.message,
+        }),
+      });
+
+      if (response.ok) {
+        // console.log("Email Sent Successfully!");
+        notify(true);
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        //console.log("There was a problem sending email. Please try again!");
+        notify(false);
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+      notify(false);
+    } finally {
+      setIsSending(false);
+    }
+  };
   // Intersection Observer to detect when the Projects section is in view
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -79,9 +167,9 @@ const Contact = () => {
                   className="cursor-pointer"
                 />
               </Link>
-              <Link href={""}>
+              <Link href={"https://github.com/Bouchali-Aymen"} target="_blank">
                 <Image
-                  src={twitter}
+                  src={github}
                   alt="twitter"
                   width={40}
                   className="cursor-pointer"
@@ -90,7 +178,11 @@ const Contact = () => {
             </div>
           </div>
           <div className="md:w-1/2 w-full h-[600px]">
-            <form action="" className="w-full flex flex-col gap-y-3">
+            <form
+              action=""
+              className="w-full flex flex-col gap-y-3"
+              onSubmit={handleSubmit}
+            >
               <div className="flex flex-col gap-y-2">
                 <label htmlFor="name">Name</label>
                 <input
@@ -99,6 +191,8 @@ const Contact = () => {
                   id=""
                   className="p-3  rounded-sm bg-second outline-none"
                   placeholder="Name"
+                  onChange={handleChange}
+                  value={formData.name}
                 />
               </div>
               <div className="flex flex-col gap-y-2">
@@ -109,6 +203,8 @@ const Contact = () => {
                   id=""
                   className="p-3  rounded-sm bg-second outline-none"
                   placeholder="Email"
+                  onChange={handleChange}
+                  value={formData.email}
                 />
               </div>
               <div className="flex flex-col gap-y-2">
@@ -119,6 +215,8 @@ const Contact = () => {
                   className="p-3  rounded-sm bg-second outline-none w-full"
                   rows={8}
                   placeholder="Message"
+                  onChange={handleChange}
+                  value={formData.message}
                 />
               </div>
               <input
@@ -129,6 +227,7 @@ const Contact = () => {
             </form>
           </div>
         </div>
+        <Toaster />
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import "../../app/globals.css";
 import Image from "next/image";
 import facebook from "../../../public/facebook.png";
 import linkedin from "../../../public/linkedin.png";
-import twitter from "../../../public/twitter.png";
+import github from "../../../public/github.png";
 import { Menu } from "lucide-react";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import Link from "next/link";
@@ -87,24 +87,36 @@ export const NavBar = () => {
         )}
 
         <div className="flex items-center justify-evenly gap-x-[20px]">
-          <Image
-            src={facebook}
-            alt="facebook"
-            width={25}
-            className="cursor-pointer"
-          />
-          <Image
-            src={linkedin}
-            alt="linkedin"
-            width={25}
-            className="cursor-pointer"
-          />
-          <Image
-            src={twitter}
-            alt="twitter"
-            width={25}
-            className="cursor-pointer"
-          />
+          <Link
+            href={"https://www.facebook.com/profile.php?id=100008749845516"}
+            target="_blank"
+          >
+            <Image
+              src={facebook}
+              alt="facebook"
+              width={25}
+              className="cursor-pointer"
+            />
+          </Link>
+          <Link
+            href={"https://www.linkedin.com/in/aymen-bouchali-890b85263/"}
+            target="_blank"
+          >
+            <Image
+              src={linkedin}
+              alt="linkedin"
+              width={25}
+              className="cursor-pointer"
+            />
+          </Link>
+          <Link href={"https://github.com/Bouchali-Aymen"} target="_blank">
+            <Image
+              src={github}
+              alt="twitter"
+              width={25}
+              className="cursor-pointer"
+            />
+          </Link>
         </div>
       </div>
     </div>

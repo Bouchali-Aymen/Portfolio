@@ -55,6 +55,6 @@ export const projects: project[] = [
     title: "Mazraati",
     description:
       "Developed an end-to-end web application solution to help a client firm efficiently manage their farm operations. Built using Next.js,CSS for forntend and Node.js and Express.js and MySQL for backend ",
-    url: "https://github.com/Bouchali-Aymen/Weather-Web-Application",
+    url: "https://github.com/Bouchali-Aymen/Mazraati",
   },
 ];
