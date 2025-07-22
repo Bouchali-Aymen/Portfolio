@@ -9,6 +9,7 @@ import "./globals.css";
 import Footer from "../components/Footer";
 import { ChevronsDown, ChevronsUp } from "lucide-react";
 import { useEffect, useState } from "react";
+import Exeperience from "../components/experience/Exeperience";
 
 export default function Home() {
   const [ChangeArrow, setChangeArrow] = useState(false);
@@ -40,11 +41,12 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-background relative">
+    <div className="bg-gradient-to-r from-black via-blue-950 to-black relative">
       <div id="navbar">
         <Landing />
       </div>
       <Projects />
+      <Exeperience />
       <Techno />
       <Contact />
       <Footer />
@@ -52,7 +54,7 @@ export default function Home() {
         <div className="bg-second w-[45px] h-[45px] rounded-full flex items-center justify-center cursor-pointer">
           <div
             onClick={() =>
-              handleSmoothScroll(ChangeArrow ? "navbar" : "footer")
+              handleSmoothScroll(ChangeArrow ? "landing" : "footer")
             }
           >
             {ChangeArrow ? (

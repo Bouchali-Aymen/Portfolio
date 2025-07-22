@@ -1,62 +1,74 @@
-"use client";
-import React, { useEffect, useState } from "react";
-
-import "../../app/globals.css";
-import Image from "next/image";
-import me from "../../../public/me.jpg";
+"use client"
+import { useEffect, useState } from "react"
+import Image from "next/image"
+import { Download } from "lucide-react"
 
 export const Landing = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [rightIsVisible, setRightIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
-    setIsVisible(true); // This will trigger the animation
-    setRightIsVisible(true);
-  }, []);
+    setIsVisible(true)
+  }, [])
+
   return (
-    <div className={`w-full md:h-[100vh] h-fit py-section_padding`}>
-      <div className="container flex items-center w-full md:flex-row flex-col-reverse">
-        <div
-          className={`flex flex-col items-center md:items-start md:gap-y-[30px] gap-y[20px] relative transition-all duration-1000 ${
-            isVisible ? "-left-0" : " -left-full"
-          }`}
-        >
-          <h1 className="sm:text-[60px] text-[30px] text-primary m-0">
-            Hello, I&apos;am Aymen
-          </h1>
-          <h2 className="sm:text-[60px] text-[30px] m-0">
-            Full Stack Developer
-          </h2>
-          <p className="text-gray-400 md:text-start text-center my-5 md:my-0">
-            I&apos;m Aymne Bouchali, a 20-year-old full-stack developer
-            passionate about building innovative solutions. I&apos;m actively
-            seeking new opportunities to enhance my skills and collaborate on
-            exciting projects that push the boundaries of software development.
-          </p>
-          <a
-            href="/resume/Resume.pdf"
-            download={"resume.pdf"}
-            className="w-fit px-[30px] py-[20px] rounded-lg font-bold bg-primary cursor-pointer"
+    <div className="min-h-screen pt-section_padding" id="landing">
+      <div className="max-w-6xl mx-auto px-6 py-20">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div
+            className={`space-y-8 transform transition-all duration-700 ${
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+            }`}
           >
-            Download CV
-          </a>
-        </div>
-        <div
-          className={`flex items-center justify-center w-1/2 h-fit relative  transition-all duration-1000 ${
-            rightIsVisible ? "-right-0" : "-right-full"
-          }`}
-        >
-          <div className="w-[300px] h-[300px] bg-transparent rounded-full">
-            <Image
-              src={me}
-              alt=""
-              className="max-w-full object-contain rounded-full grayscale"
-            />
+            <div className="space-y-6">
+              <h1 className="text-5xl lg:text-6xl font-bold text-white leading-tight">
+                Hello, I&#39;m <span className="text-blue-600">Aymen</span>
+              </h1>
+
+              <h2 className="text-2xl lg:text-3xl font-medium text-white">Full Stack Developer</h2>
+
+              <p className="text-lg text-white leading-relaxed">
+                I&#39;m Aymen Bouchali, a 21-year-old full-stack developer passionate about building innovative solutions.
+                I&#39;m actively seeking new opportunities to enhance my skills and collaborate on exciting projects.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a
+                href="/resume/Resume.pdf"
+                download="resume.pdf"
+                className="inline-flex items-center justify-center px-8 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                <Download size={20} className="mr-2" />
+                Download CV
+              </a>
+
+              <a href="#projects" className="inline-flex items-center justify-center px-8 py-3 border-2 border-gray-300 text-white font-medium rounded-lg hover:border-gray-400  transition-colors">
+                View Projects
+              </a>
+            </div>
+          </div>
+
+          <div
+            className={`flex justify-center lg:justify-end transform transition-all duration-700 delay-200 ${
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+            }`}
+          >
+            <div className="relative">
+              <div className="w-80 h-80 rounded-full overflow-hidden border-4 border-white shadow-xl">
+                <Image
+                  src="/me.jpg"
+                  alt="Aymen Bouchali"
+                  width={320}
+                  height={320}
+                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Landing;
+export default Landing

@@ -23,9 +23,6 @@ const ProjectBox: React.FC<ProjectBoxProps> = ({
       <Image alt="" src={image} className="w-full object-cover h-[50%]" />
 
       <div className="bg-white p-4 sm:p-6 h-full">
-        <time dateTime="2022-10-10" className="block text-xs text-gray-500">
-          10th Oct 2022
-        </time>
         <a href="#">
           <h3 className="mt-0.5 text-lg text-gray-900">{title}</h3>
         </a>
@@ -49,7 +46,6 @@ const ProjectBox: React.FC<ProjectBoxProps> = ({
         </div>
       </div>
 
-      {/* Modal for full description */}
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
