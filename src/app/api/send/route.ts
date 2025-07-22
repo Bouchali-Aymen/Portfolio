@@ -5,14 +5,14 @@ import { ContactEmailProps } from "../../../types/interfaces";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
-  const body: ContactEmailProps = await req.json(); // Explicitly type the body
+  const body: ContactEmailProps = await req.json();
 
   try {
     const data = await resend.emails.send({
-      from: "onboarding@resend.dev",
+      from: body.email,
       to: "bouchalirm7@gmail.com",
       subject: "Portfolio Interaction",
-      react: EmailTemplate({ body }), // Ensure `body` type matches
+      react: EmailTemplate({ body }), 
     });
 
     return Response.json(data);

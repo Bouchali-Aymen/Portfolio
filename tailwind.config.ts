@@ -10,8 +10,8 @@ const config: Config = {
     extend: {
       container: {
         padding: {
-          DEFAULT: "30px", // Default padding for large screens
-          lg: "60px", // Padding when the screen is less than 1024px wide
+          DEFAULT: "30px",
+          lg: "60px",
         },
         center: true,
       },
@@ -22,6 +22,9 @@ const config: Config = {
       },
       padding: {
         section_padding: "100px",
+      },
+      fontFamily: {
+        roboto: ["var(--font-roboto)"],
       },
     },
   },

@@ -10,14 +10,14 @@ import farm from "../../public/projects/farm.png";
 export const projects: project[] = [
   {
     image: e_com,
-    title: "Portfolio",
+    title: "Shopin",
     description:
       "A web application to present my skills, the projects I have worked on, and more information about me.Built using TypeScript,Nextjs,Pure CSS",
     url: "https://github.com/Bouchali-Aymen/E-commerce-website",
   },
   {
     image: portfolio,
-    title: "Shopin",
+    title: "Portfolio",
     description:
       "An e-commerce website for stylish and affordable clothing, featuring easy navigation and friendly user interface,with admine panel.Built using Nextjs,Pure CSS for frontend and Nodejs,Expressjs,MongoDB for backend",
     url: "https://github.com/Bouchali-Aymen/Portfolio ",

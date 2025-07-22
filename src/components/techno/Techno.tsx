@@ -3,21 +3,21 @@ import Image from "next/image";
 import "../../app/globals.css";
 import { technologies } from "../../constatnts/technologies";
 import React, { useRef, useEffect, useState } from "react";
+import TechnoCard from "../technologiesCards/TechnoCard";
 
 export const Techno = () => {
-  const animationRef = useRef<HTMLDivElement>(null); // Separate ref for animation trigger
+  const animationRef = useRef<HTMLDivElement>(null); 
   const [isVisible, setIsVisible] = useState(false);
-  // Intersection Observer to detect when the Projects section is in view
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setIsVisible(true); // Trigger the animation when visible
+            setIsVisible(true); 
           }
         });
       },
-      { threshold: 0.1 } // 10% of the element must be visible to trigger the callback
+      { threshold: 0.1 }
     );
 
     if (animationRef.current) {
@@ -38,17 +38,21 @@ export const Techno = () => {
       ref={animationRef}
       id="technologies"
     >
-      <h1 className="sections-header">Technologies</h1>
+        <div className="text-center">
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent mb-4">
+            Technologies
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto rounded-full"></div>
+          <p className="text-gray-400 mt-6 text-lg max-w-2xl mx-auto">
+          Technologies i work with
+          </p>
+        </div>
+      <h1 className="sections-header"></h1>
       <div className="w-full container flex gap-y-10">
         <div className="w-full flex justify-center gap-x-10 gap-y-10 flex-wrap">
           {technologies.map((item, index) => {
             return (
-              <Image
-                key={index}
-                src={item.image}
-                alt={item.name}
-                className="relative hover:-translate-y-2 transition-all cursor-pointer"
-              />
+              <TechnoCard key={index} category={item.category} image={item.image} name={item.name}/>
             );
           })}
         </div>
