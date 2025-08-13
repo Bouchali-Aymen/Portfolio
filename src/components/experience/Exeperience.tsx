@@ -33,7 +33,7 @@ const Experience = () => {
 
   return (
     <section
-      className={`py-20 w-full relative flex flex-col justify-center items-center transition-all duration-1000 ${
+      className={`py-section_padding transition-all duration-1000 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
       ref={animationRef}
@@ -45,7 +45,7 @@ const Experience = () => {
             Experience
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto rounded-full"></div>
-          <p className="text-gray-400 mt-6 text-lg max-w-2xl mx-auto">
+          <p className="text-theme-text-muted mt-6 text-lg max-w-2xl mx-auto">
             My professional journey and key milestones in software development
           </p>
         </div>
@@ -63,6 +63,7 @@ const Experience = () => {
                 date={exp.date}
                 index={idx}
                 isVisible={isVisible}
+                stack={exp.stack}
               />
             ))}
           </div>

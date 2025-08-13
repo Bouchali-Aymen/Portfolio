@@ -22,23 +22,23 @@ const ProjectBox: React.FC<ProjectBoxProps> = ({
     <article className="md:w-[450px] md:h-[500px] w-[300px] h-[400px] overflow-hidden rounded-lg shadow transition hover:shadow-lg flex-shrink-0 relative">
       <Image alt="" src={image} className="w-full object-cover h-[50%]" />
 
-      <div className="bg-white p-4 sm:p-6 h-full">
+      <div className="bg-theme-card-bg border border-theme-card-border p-4 sm:p-6 h-full">
         <a href="#">
-          <h3 className="mt-0.5 text-lg text-gray-900">{title}</h3>
+          <h3 className="mt-0.5 text-lg text-theme-text-primary">{title}</h3>
         </a>
 
-        <p className="mt-2 text-sm text-gray-500 line-clamp-3">{description}</p>
+        <p className="mt-2 text-sm text-theme-text-muted line-clamp-3">{description}</p>
         <div className="flex w-full justify-between">
           <button
             onClick={() => setIsModalOpen(true)}
-            className="text-blue-500 hover:underline mt-2"
+            className="text-theme-accent hover:text-theme-accent-hover mt-2 transition-colors"
           >
             See more
           </button>
 
           <Link
             href={url}
-            className="text-blue-500 hover:underline mt-2"
+            className="text-theme-accent hover:text-theme-accent-hover mt-2 transition-colors"
             target="_blank"
           >
             Github

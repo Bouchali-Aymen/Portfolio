@@ -41,7 +41,7 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-gradient-to-r from-black via-blue-950 to-black relative">
+    <div className="bg-theme-bg-primary relative">
       <div id="navbar">
         <Landing />
       </div>
@@ -51,16 +51,16 @@ export default function Home() {
       <Contact />
       <Footer />
       <div className="fixed bottom-3 w-full flex items-center justify-center">
-        <div className="bg-second w-[45px] h-[45px] rounded-full flex items-center justify-center cursor-pointer">
+        <div className="bg-theme-card-bg border border-theme-card-border w-[45px] h-[45px] rounded-full flex items-center justify-center cursor-pointer hover:border-theme-accent transition-colors">
           <div
             onClick={() =>
               handleSmoothScroll(ChangeArrow ? "landing" : "footer")
             }
           >
             {ChangeArrow ? (
-              <ChevronsUp className="arrow-down" />
+              <ChevronsUp className="arrow-down text-theme-text-primary" />
             ) : (
-              <ChevronsDown className="arrow-down" />
+              <ChevronsDown className="arrow-down text-theme-text-primary" />
             )}
           </div>
         </div>

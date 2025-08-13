@@ -1,27 +1,13 @@
 "use client";
-import React, { useRef, useEffect, useState } from "react";
-import ProjectBox from "../project_box/project_box";
+import { useRef, useEffect, useState } from "react";
 import { projects } from "../../constatnts/projects";
-import { MoveLeft, MoveRight } from "lucide-react";
+import ProjectBox from "../project_box/project_box";
+import { MoveRight, MoveLeft } from "lucide-react";
 
 export const Projects = () => {
-  const scrollContainerRef = useRef<HTMLDivElement>(null); // Ref for scrolling
-  const animationRef = useRef<HTMLDivElement>(null); // Separate ref for animation trigger
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-
-  // Function to scroll the container to the right
-  const handleScrollRight = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 300, behavior: "smooth" });
-    }
-  };
-
-  // Function to scroll the container to the left
-  const handleScrollLeft = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -300, behavior: "smooth" });
-    }
-  };
+  const animationRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -46,6 +32,24 @@ export const Projects = () => {
     };
   }, []);
 
+  const handleScrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: -300,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const handleScrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: 300,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <div
       className={`pb-section_padding w-full relative  flex flex-col justify-center items-center gap-[40px] projects-slide-in ${
@@ -59,7 +63,7 @@ export const Projects = () => {
           Projects
         </h2>
         <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto rounded-full"></div>
-        <p className="text-gray-400 mt-6 text-lg max-w-2xl mx-auto">
+        <p className="text-theme-text-muted mt-6 text-lg max-w-2xl mx-auto">
           Some personal and professional projects I have worked on.{" "}
         </p>
       </div>{" "}
@@ -73,16 +77,16 @@ export const Projects = () => {
         })}
       </div>
       <div
-        className="flex items-center justify-center absolute bg-second top-1/2 right-0 mr-[20px] cursor-pointer p-[10px] rounded-full "
+        className="flex items-center justify-center absolute bg-theme-card-bg border border-theme-card-border top-1/2 right-0 mr-[20px] cursor-pointer p-[10px] rounded-full hover:border-theme-accent transition-colors"
         onClick={handleScrollRight}
       >
-        <MoveRight className="arrows-bounce" />
+        <MoveRight className="arrows-bounce text-theme-text-primary" />
       </div>
       <div
-        className="flex items-center justify-center absolute bg-second top-1/2 left-0 ml-[20px] cursor-pointer p-[10px] rounded-full"
+        className="flex items-center justify-center absolute bg-theme-card-bg border border-theme-card-border top-1/2 left-0 ml-[20px] cursor-pointer p-[10px] rounded-full hover:border-theme-accent transition-colors"
         onClick={handleScrollLeft}
       >
-        <MoveLeft className="arrows-bounce" />
+        <MoveLeft className="arrows-bounce text-theme-text-primary" />
       </div>
     </div>
   );
