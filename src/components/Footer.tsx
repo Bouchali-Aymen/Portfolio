@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="container w-full" id="footer">
       <div className="max-w-screen-xl pb-8 w-full">
         <div className=" pt-8 flex sm:flex-row sm:items-center  flex-col items-center justify-center sm:justify-between">
-          <p className="text-gray-700">
+          <p className="text-theme-text-muted">
             &copy; 2024 Aymen Bouchali. All Rights Reserved
           </p>
           <ul className="mt-8 flex justify-center gap-6 sm:mt-0 lg:justify-end">
@@ -14,7 +14,7 @@ const Footer = () => {
                 href="#"
                 rel="noreferrer"
                 target="_blank"
-                className="text-gray-700 transition hover:opacity-75"
+                className="text-theme-text-muted transition hover:text-theme-accent"
               >
                 <span className="sr-only">Facebook</span>
 
@@ -39,7 +39,7 @@ const Footer = () => {
                 href="#"
                 rel="noreferrer"
                 target="_blank"
-                className="text-gray-700 transition hover:opacity-75"
+                className="text-theme-text-muted transition hover:text-theme-accent"
               >
                 <span className="sr-only">GitHub</span>
 

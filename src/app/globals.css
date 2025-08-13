@@ -3,9 +3,39 @@
 @tailwind utilities;
 
 :root {
+  --section-padding: 100px;
+}
+
+/* Dark theme variables */
+[data-theme="dark"] {
   --main-color: #101424;
   --second-color: #1e7898;
-  --section-padding: 100px;
+  --background-primary: #101424;
+  --background-secondary: #040711;
+  --text-primary: #ffffff;
+  --text-secondary: #e5e7eb;
+  --text-muted: #9ca3af;
+  --border-color: #374151;
+  --accent-color: #1e7898;
+  --accent-hover: #1e40af;
+  --card-bg: #1f2937;
+  --card-border: #374151;
+}
+
+/* Light theme variables */
+[data-theme="light"] {
+  --main-color: #ffffff;
+  --second-color: #1e7898;
+  --background-primary: #ffffff;
+  --background-secondary: #f8fafc;
+  --text-primary: #1f2937;
+  --text-secondary: #374151;
+  --text-muted: #6b7280;
+  --border-color: #d1d5db;
+  --accent-color: #1e7898;
+  --accent-hover: #1e40af;
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
 }
 
 * {
@@ -22,7 +52,9 @@ body {
 }
 
 body {
-  background-color: var(--main-color);
+  background-color: var(--background-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 a {
@@ -90,7 +122,8 @@ ul {
 }
 
 .sections-header {
-  @apply text-white font-bold text-4xl flex flex-row tracking-wide relative w-fit font-mono;
+  @apply font-bold text-4xl flex flex-row tracking-wide relative w-fit font-mono;
+  color: var(--text-primary);
 }
 
 @keyframes bounce {

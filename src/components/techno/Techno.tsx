@@ -32,18 +32,18 @@ export const Techno = () => {
   }, []);
   return (
     <div
-      className={`w-fill py-section_padding flex flex-col items-center gap-[100px] projects-slide-in ${
+      className={`w-fill py-section_padding flex flex-col items-center projects-slide-in ${
         isVisible ? "projects-visible" : ""
       }`}
       ref={animationRef}
       id="technologies"
     >
-        <div className="text-center">
+        <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent mb-4">
             Technologies
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto rounded-full"></div>
-          <p className="text-gray-400 mt-6 text-lg max-w-2xl mx-auto">
+          <p className="text-theme-text-muted mt-6 text-lg max-w-2xl mx-auto">
           Technologies i work with
           </p>
         </div>
