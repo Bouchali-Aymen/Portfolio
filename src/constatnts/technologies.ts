@@ -9,9 +9,11 @@ import mysql from '../../public/mysql.png'
 import php from '../../public/php.png'
 import postgre from '../../public/postgre.png'
 import github from '../../public/github.png'
-import git from '../../public/social.png'
+import git from '../../public/gitDark.png'
 import { techno } from '../types/interfaces'
 import laravel from '../../public/laravel.png'
+
+
 
 export const technologies:techno[] = [
     {

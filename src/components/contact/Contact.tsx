@@ -6,18 +6,19 @@ import { Mail, Phone, MapPin, Send } from "lucide-react";
 const Contact = () => {
   const animationRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+
   const contactInfo = [
     {
       icon: Mail,
       label: "Email",
-      value: "aymen.bouchali@gmail.com",
-      href: "mailto:aymen.bouchali@gmail.com",
+      value: "aymenbouchali14@gmail.com",
+      href: "mailto:aymenbouchali14@gmail.com",
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+213 6 95 95 95 95",
-      href: "tel:+21369595959595",
+      value: "+213 5 42 62 96 45",
+      href: "tel:+213542629645",
     },
     {
       icon: MapPin,
