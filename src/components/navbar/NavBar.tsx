@@ -46,7 +46,7 @@ export const NavBar = () => {
             </button>
 
             <Link
-              href="https://github.com/Bouchali-Aymen"
+              href="https://github.com/AymenBouchali"
               target="_blank"
               className="text-theme-text-primary hover:text-theme-accent transition-colors"
             >
