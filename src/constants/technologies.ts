@@ -28,17 +28,17 @@ export const technologies:techno[] = [
     },
     {
         image:js,
-        name:"Jave Script",
-         category:"frontend"
+        name:"JavaScript",
+        category:"frontend"
     },
     {
         image:node,
-        name:"Node js",
-         category:"backend"
+        name:"Node.js",
+        category:"backend"
     },
     {
         image:express,
-        name:"Express js",
+        name:"Express.js",
         category:"backend",
     },
     {
@@ -48,7 +48,7 @@ export const technologies:techno[] = [
     },
     {
         image:mongo,
-        name:"Mongo DB",
+        name:"MongoDB",
         category:"database"
     },
     {
@@ -63,12 +63,12 @@ export const technologies:techno[] = [
     },
     {
         image:postgre,
-        name:"PostgreSQL ",
+        name:"PostgreSQL",
         category:"database"
     },
     {
         image:github,
-        name:"Github",
+        name:"GitHub",
         category:"version control"
     },
     {
@@ -83,4 +83,4 @@ export const technologies:techno[] = [
     }
 
    
-]
+] 

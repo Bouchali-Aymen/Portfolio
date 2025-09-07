@@ -23,11 +23,15 @@ const ProjectBox: React.FC<ProjectBoxProps> = ({
       <Image alt="" src={image} className="w-full object-cover h-[50%]" />
 
       <div className="bg-theme-card-bg border border-theme-card-border p-4 sm:p-6 h-full">
-        <a href="#">
-          <h3 className="mt-0.5 text-lg text-theme-text-primary">{title}</h3>
-        </a>
+        <Link href={url} target="_blank" rel="noopener noreferrer">
+          <h3 className="mt-0.5 text-lg text-theme-text-primary hover:text-theme-accent transition-colors">
+            {title}
+          </h3>
+        </Link>
 
-        <p className="mt-2 text-sm text-theme-text-muted line-clamp-3">{description}</p>
+        <p className="mt-2 text-sm text-theme-text-muted line-clamp-3">
+          {description}
+        </p>
         <div className="flex w-full justify-between">
           <button
             onClick={() => setIsModalOpen(true)}
@@ -35,14 +39,15 @@ const ProjectBox: React.FC<ProjectBoxProps> = ({
           >
             See more
           </button>
-
-          <Link
-            href={url}
-            className="text-theme-accent hover:text-theme-accent-hover mt-2 transition-colors"
-            target="_blank"
-          >
-            Github
-          </Link>
+          {title === "Eventers" || title === "BuildPrompt" ? null : (
+            <Link
+              href={url}
+              className="text-theme-accent hover:text-theme-accent-hover mt-2 transition-colors"
+              target="_blank"
+            >
+              {title === "Connected Algeria" ? "Visit Site" : "View Code"}
+            </Link>
+          )}
         </div>
       </div>
 

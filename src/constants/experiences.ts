@@ -23,4 +23,4 @@ export const experiences = [
     date: "Jan 2025 – Jul 2025",
     stack: ["Next js", "Nuxt js", "Laravel"],
   },
-];
+]; 

@@ -6,6 +6,9 @@ import ldrsi from "../../public/projects/ildrs.png";
 import grinding from "../../public/projects/grinding.png";
 import weather from "../../public/projects/weather.png";
 import farm from "../../public/projects/farm.png";
+import eventers from "../../public/projects/eventers.png";
+import connected from "../../public/projects/connected.png"
+import buildprompt from "../../public/projects/buildprompt.png"
 
 export const projects: project[] = [
   {
@@ -50,11 +53,37 @@ export const projects: project[] = [
       "A weather web app built using Next.js, TypeScript, and pure CSS, using the OpenWeatherMap API to display real-time weather data for different locations.",
     url: "https://github.com/Bouchali-Aymen/Weather-Web-Application",
   },
+
+];
+
+export const pro_projects: project[] = [
   {
+    image: eventers,
+    title: "Eventers",
+    description:
+      "Eventers is a full-stack platform designed to simplify event organization, contract management, and real-time interactions. I contributed to both the frontend and backend, focusing on building scalable, interactive features.",
+    url:"",
+  },
+  {
+    image: connected,
+    title: "Connected Algeria",
+    description:
+      "Connected Algeria is a multilingual event platform developed for the Ministry of Telecommunications to host the Connected Algeria 2025 initiative. It provides registration, program scheduling, and content access for participants, while also supporting networking between stakeholders. I contributed to building a responsive, user-friendly interface and ensuring the platform could scale for a national-level audience.",
+    url: "https://connectedalgeria.dz/"
+  },
+  {
+    image: buildprompt,
+    title: "BuildPrompt",
+    description:
+      "BuildPrompt is a SaaS platform that leverages AI to analyze documents and provide actionable insights. I contributed to the frontend development, designing and implementing responsive interfaces with Next.js, Nuxt.js, and TailwindCSS, while collaborating closely with product and backend teams to deliver a consistent and intuitive user experience.",
+    url: "https://connectedalgeria.dz/"
+  },
+    {
     image: farm,
     title: "Mazraati",
     description:
       "Developed an end-to-end web application solution to help a client firm efficiently manage their farm operations. Built using Next.js,CSS for forntend and Node.js and Express.js and MySQL for backend ",
     url: "https://github.com/Bouchali-Aymen/Mazraati",
   },
-];
+
+] 

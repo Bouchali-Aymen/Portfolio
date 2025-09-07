@@ -22,9 +22,17 @@ const ExperCard: FC<ExperCardProps> = ({
 }) => {
   const isEven = index % 2 === 0;
 
+  const delayClass = [
+    "delay-0",
+    "delay-200",
+    "delay-400",
+    "delay-600",
+    "delay-800",
+  ][Math.min(index, 4)]
+
   return (
     <div
-      className={`relative flex items-center transition-all duration-700 delay-${index * 200} ${
+      className={`relative flex items-center transition-all duration-700 ${delayClass} ${
         isVisible
           ? "opacity-100 translate-x-0"
           : `opacity-0 ${isEven ? "-translate-x-10" : "translate-x-10"}`
