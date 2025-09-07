@@ -24,6 +24,9 @@ export const NavBar = () => {
             <Link href="#projects" className="text-theme-text-primary hover:text-theme-accent transition-colors">
               Projects
             </Link>
+            <Link href="#pro-projects" className="text-theme-text-primary hover:text-theme-accent transition-colors">
+              Pro Projects
+            </Link>
             <Link href="#technologies" className="text-theme-text-primary hover:text-theme-accent transition-colors">
               Technologies
             </Link>
@@ -46,8 +49,9 @@ export const NavBar = () => {
             </button>
 
             <Link
-              href="https://github.com/AymenBouchali"
+              href="https://github.com/Bouchali-Aymen"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-theme-text-primary hover:text-theme-accent transition-colors"
             >
               <Github size={20} />
@@ -55,6 +59,7 @@ export const NavBar = () => {
             <Link
               href="https://www.linkedin.com/in/aymen-bouchali-890b85263/"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-theme-text-primary hover:text-theme-accent transition-colors"
             >
               <Linkedin size={20} />
@@ -62,6 +67,7 @@ export const NavBar = () => {
             <Link
               href="https://www.facebook.com/profile.php?id=100008749845516"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-theme-text-primary hover:text-theme-accent transition-colors"
             >
               <Facebook size={20} />
@@ -82,6 +88,13 @@ export const NavBar = () => {
                 onClick={() => setToggleMenu(false)}
               >
                 Projects
+              </Link>
+              <Link
+                href="#pro-projects"
+                className="text-theme-text-primary hover:text-theme-accent transition-colors"
+                onClick={() => setToggleMenu(false)}
+              >
+                Pro Projects
               </Link>
               <Link
                 href="#technologies"
@@ -114,6 +127,7 @@ export const NavBar = () => {
                 <Link
                   href="https://github.com/Bouchali-Aymen"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="text-theme-text-primary hover:text-theme-accent transition-colors"
                 >
                   <Github size={20} />
@@ -121,6 +135,7 @@ export const NavBar = () => {
                 <Link
                   href="https://www.linkedin.com/in/aymen-bouchali-890b85263/"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="text-theme-text-primary hover:text-theme-accent transition-colors"
                 >
                   <Linkedin size={20} />
@@ -128,6 +143,7 @@ export const NavBar = () => {
                 <Link
                   href="https://www.facebook.com/profile.php?id=100008749845516"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="text-theme-text-primary hover:text-theme-accent transition-colors"
                 >
                   <Facebook size={20} />

@@ -8,10 +8,17 @@ export const  useMediaQuery = (query: string) => {
     if (media.matches !== matches) {
       setMatches(media.matches);
     }
-    const listener = () => setMatches(media.matches);
-    media.addListener(listener);
+    const listener = (event: MediaQueryListEvent) => setMatches(event.matches);
+    media.addEventListener?.('change', listener);
+    // Fallback for Safari < 14
+    // @ts-ignore
+    media.addListener && media.addListener(listener);
 
-    return () => media.removeListener(listener);
+    return () => {
+      media.removeEventListener?.('change', listener);
+      // @ts-ignore
+      media.removeListener && media.removeListener(listener);
+    };
   }, [matches, query]);
 
   return matches;

@@ -1,9 +1,7 @@
 "use client";
-import Image from "next/image";
-import "../../app/globals.css";
-import { technologies } from "../../constatnts/technologies";
 import React, { useRef, useEffect, useState } from "react";
-import TechnoCard from "../technologiesCards/TechnoCard";
+import { technologies } from "@/constants/technologies";
+import TechnoCard from "@/components/technologiesCards/TechnoCard";
 
 export const Techno = () => {
   const animationRef = useRef<HTMLDivElement>(null); 
@@ -20,19 +18,20 @@ export const Techno = () => {
       { threshold: 0.1 }
     );
 
-    if (animationRef.current) {
-      observer.observe(animationRef.current);
+    const currentRef = animationRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (animationRef.current) {
-        observer.unobserve(animationRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
   return (
     <div
-      className={`w-fill py-section_padding flex flex-col items-center projects-slide-in ${
+      className={`w-full py-section_padding flex flex-col items-center projects-slide-in ${
         isVisible ? "projects-visible" : ""
       }`}
       ref={animationRef}
@@ -44,7 +43,7 @@ export const Techno = () => {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto rounded-full"></div>
           <p className="text-theme-text-muted mt-6 text-lg max-w-2xl mx-auto">
-          Technologies i work with
+            Technologies I work with
           </p>
         </div>
       <h1 className="sections-header"></h1>

@@ -2,13 +2,10 @@ import React from "react";
 import Image from "next/image";
 import { FC } from "react";
 import { techno } from "../../types/interfaces";
-import { useTheme } from "../../hooks/useTheme";
 
 interface TechnoCardProps extends techno {}
 
 const TechnoCard: FC<TechnoCardProps> = ({ image, name }) => {
-    const { theme } = useTheme();
-
   return (
     <div className={`flex flex-col gap-3 w-[200px] p-9 items-center bg-theme-card-bg border border-theme-card-border rounded-lg shadow-xl hover:shadow-2xl hover:shadow-theme-accent/10 transition-all duration-300 group-hover:border-theme-accent/50`}>
       

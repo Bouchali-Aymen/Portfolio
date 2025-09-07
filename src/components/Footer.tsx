@@ -11,8 +11,8 @@ const Footer = () => {
           <ul className="mt-8 flex justify-center gap-6 sm:mt-0 lg:justify-end">
             <li>
               <a
-                href="#"
-                rel="noreferrer"
+                href="https://www.facebook.com/profile.php?id=100008749845516"
+                rel="noopener noreferrer"
                 target="_blank"
                 className="text-theme-text-muted transition hover:text-theme-accent"
               >
@@ -36,8 +36,8 @@ const Footer = () => {
 
             <li>
               <a
-                href="#"
-                rel="noreferrer"
+                href="https://github.com/Bouchali-Aymen"
+                rel="noopener noreferrer"
                 target="_blank"
                 className="text-theme-text-muted transition hover:text-theme-accent"
               >

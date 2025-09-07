@@ -34,7 +34,7 @@ export const Landing = () => {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="/resume/Resume.pdf"
+                href="/resume/CV.pdf"
                 download="resume.pdf"
                 className="inline-flex items-center justify-center px-8 py-3 bg-theme-accent text-white font-medium rounded-lg hover:bg-theme-accent-hover transition-colors"
               >

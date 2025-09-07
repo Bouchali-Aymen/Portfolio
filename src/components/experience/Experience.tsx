@@ -1,7 +1,7 @@
 "use client"
 import { useRef, useEffect, useState } from "react"
 import ExperCard from "./ExperCard"
-import { experiences } from "../../constatnts/experiences"
+import { experiences } from "@/constants/experiences"
 
 
 const Experience = () => {
@@ -20,13 +20,14 @@ const Experience = () => {
       { threshold: 0.1 },
     )
 
-    if (animationRef.current) {
-      observer.observe(animationRef.current)
+    const currentRef = animationRef.current;
+    if (currentRef) {
+      observer.observe(currentRef)
     }
 
     return () => {
-      if (animationRef.current) {
-        observer.unobserve(animationRef.current)
+      if (currentRef) {
+        observer.unobserve(currentRef)
       }
     }
   }, [])
@@ -73,4 +74,4 @@ const Experience = () => {
   )
 }
 
-export default Experience
+export default Experience 

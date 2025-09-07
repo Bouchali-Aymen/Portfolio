@@ -1,11 +1,11 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
-import { projects } from "../../constatnts/projects";
-import ProjectBox from "../project_box/project_box";
+import { pro_projects } from "@/constants/projects";
+import ProjectBox from "@/components/project_box/project_box";
 import { MoveRight, MoveLeft } from "lucide-react";
 
-export const Projects = () => {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+const ProProjects = () => {
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const animationRef = useRef<HTMLDivElement>(null);
 
@@ -21,13 +21,14 @@ export const Projects = () => {
       { threshold: 0.1 }
     );
 
-    if (animationRef.current) {
-      observer.observe(animationRef.current);
+    const currentRef = animationRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (animationRef.current) {
-        observer.unobserve(animationRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -49,22 +50,21 @@ export const Projects = () => {
       });
     }
   };
-
-  return (
+   return (
     <div
       className={`pb-section_padding w-full relative  flex flex-col justify-center items-center gap-[40px] projects-slide-in ${
         isVisible ? "projects-visible" : ""
       }`}
       ref={animationRef}
-      id="projects"
+      id="pro-projects"
     >
       <div className="text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent mb-4">
-          Projects
+          Professional Projects
         </h2>
         <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto rounded-full"></div>
         <p className="text-theme-text-muted mt-6 text-lg max-w-2xl mx-auto">
-          Some personal and professional projects I have worked on.{" "}
+          Some professional projects I have worked on.{" "}
         </p>
       </div>{" "}
       <div className="container mb-9"></div>
@@ -72,7 +72,7 @@ export const Projects = () => {
         className="flex flex-row gap-x-6 overflow-x-auto overflow-y-hidden snap-mandatory relative py-[20px] container no-scrollbar"
         ref={scrollContainerRef}
       >
-        {projects.map((project, index) => {
+        {pro_projects.map((project, index) => {
           return <ProjectBox key={index} {...project} />;
         })}
       </div>
@@ -90,6 +90,5 @@ export const Projects = () => {
       </div>
     </div>
   );
-};
-
-export default Projects;
+}
+export default ProProjects;
