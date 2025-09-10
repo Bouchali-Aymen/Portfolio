@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
 import { pro_projects } from "@/constants/projects";
-import ProjectBox from "@/components/project_box/project_box";
+import ProjectBox from "./project_box";
 import { MoveRight, MoveLeft } from "lucide-react";
 
 const ProProjects = () => {
@@ -92,3 +92,5 @@ const ProProjects = () => {
   );
 }
 export default ProProjects;
+
+

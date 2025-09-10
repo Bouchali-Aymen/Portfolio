@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
-import { projects } from "../../constants/projects";
-import ProjectBox from "../project_box/project_box";
+import { projects } from "../constants/projects";
+import ProjectBox from "./project_box";
 import { MoveRight, MoveLeft } from "lucide-react";
 
 export const Projects = () => {
@@ -94,3 +94,5 @@ export const Projects = () => {
 };
 
 export default Projects;
+
+

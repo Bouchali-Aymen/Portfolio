@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
 import { technologies } from "@/constants/technologies";
-import TechnoCard from "@/components/technologiesCards/TechnoCard";
+import TechnoCard from "./TechnoCard";
 
 export const Techno = () => {
   const animationRef = useRef<HTMLDivElement>(null); 
@@ -61,3 +61,5 @@ export const Techno = () => {
 };
 
 export default Techno;
+
+

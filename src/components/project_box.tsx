@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image, { StaticImageData } from "next/image";
-import Modal from "../Modal"; // Adjust the import path accordingly
+import Modal from "./Modal"; // Adjusted to flat structure
 import Link from "next/link";
 
 interface ProjectBoxProps {
@@ -62,3 +62,5 @@ const ProjectBox: React.FC<ProjectBoxProps> = ({
 };
 
 export default ProjectBox;
+
+

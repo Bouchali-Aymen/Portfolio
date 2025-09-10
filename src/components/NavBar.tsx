@@ -2,7 +2,7 @@
 import { useState } from "react"
 import { Menu, X, Github, Linkedin, Facebook, Sun, Moon } from "lucide-react"
 import Link from "next/link"
-import { useTheme } from "../../hooks/useTheme"
+import { useTheme } from "../hooks/useTheme"
 
 export const NavBar = () => {
   const [toggleMenu, setToggleMenu] = useState(false)
@@ -158,3 +158,5 @@ export const NavBar = () => {
 }
 
 export default NavBar
+
+

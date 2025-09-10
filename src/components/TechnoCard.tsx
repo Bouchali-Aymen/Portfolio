@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { FC } from "react";
-import { techno } from "../../types/interfaces";
+import { techno } from "../types/interfaces";
 
 interface TechnoCardProps extends techno {}
 
@@ -16,3 +16,5 @@ const TechnoCard: FC<TechnoCardProps> = ({ image, name }) => {
 };
 
 export default TechnoCard;
+
+
