@@ -1,16 +1,16 @@
 "use client";
 
-import Landing from "@/components/landing/Landing";
+import Landing from "@/components/Landing";
 
-import Techno from "@/components/techno/Techno";
-import Contact from "@/components/contact/Contact";
+import Techno from "@/components/Techno";
+import Contact from "@/components/Contact";
 
 import Footer from "@/components/Footer";
 import { ChevronsDown, ChevronsUp } from "lucide-react";
 import { useEffect, useState } from "react";
-import Experience from "@/components/experience/Experience";
-import Projects from "@/components/personal_projects/PersonalProjects";
-import ProProjects from "@/components/pro_projects/ProProjects";
+import Experience from "@/components/Experience";
+import Projects from "@/components/PersonalProjects";
+import ProProjects from "@/components/ProProjects";
 
 export default function Home() {
   const [ChangeArrow, setChangeArrow] = useState(false);
