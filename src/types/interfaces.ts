@@ -5,6 +5,7 @@ export interface project {
   title: string;
   description: string;
   url: string;
+  tags?: string[];
 }
 
 export interface techno {
@@ -14,10 +15,8 @@ export interface techno {
 }
 
 export interface ContactEmailProps {
-  name?: string; // Optional
+  name?: string;
   email: string;
-  subject?: string; // Optional
+  subject?: string;
   message: string;
 }
-
-

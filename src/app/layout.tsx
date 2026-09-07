@@ -1,38 +1,49 @@
 import type { Metadata } from "next";
-import { Roboto_Condensed } from "next/font/google";
+import { Syne, DM_Sans } from "next/font/google";
 import "./globals.css";
 import NavBar from "../components/NavBar";
-const roboto = Roboto_Condensed({
-  subsets:['latin'],
-  variable:'--font-roboto',
-  weight:'400'
-})
+
+const display = Syne({
+  subsets: ["latin"],
+  variable: "--font-display",
+  weight: ["500", "600", "700", "800"],
+});
+
+const body = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-body",
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://your-domain.com'),
-  title: 'Aymen Bouchali – Full Stack Developer',
-  description: 'Full-stack developer building modern web apps with Next.js, Node, and more.',
-  alternates: { canonical: '/' },
+  metadataBase: new URL("https://your-domain.com"),
+  title: "Aymen Bouchali – Full-Stack Engineer",
+  description:
+    "Full-stack engineer specializing in modern web platforms, applied machine learning, and cybersecurity.",
+  alternates: { canonical: "/" },
   openGraph: {
-    title: 'Aymen Bouchali – Full Stack Developer',
-    description: 'Portfolio, personal and professional projects, experience, and contact.',
-    url: 'https://your-domain.com',
-    siteName: 'Aymen Bouchali',
-    images: [{ url: '/next.svg', width: 1200, height: 630 }],
-    locale: 'en_US',
-    type: 'website',
+    title: "Aymen Bouchali – Full-Stack Engineer",
+    description:
+      "Experience, projects, and skills across web engineering, AI, networks, and security.",
+    url: "https://your-domain.com",
+    siteName: "Aymen Bouchali",
+    images: [{ url: "/me.jpg", width: 1200, height: 630 }],
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Aymen Bouchali – Full Stack Developer',
-    description: 'Portfolio, personal and professional projects, experience, and contact.',
-    images: ['/next.svg'],
+    card: "summary_large_image",
+    title: "Aymen Bouchali – Full-Stack Engineer",
+    description:
+      "Experience, projects, and skills across web engineering, AI, networks, and security.",
+    images: ["/me.jpg"],
   },
   robots: {
     index: true,
     follow: true,
     googleBot: { index: true, follow: true },
   },
-}
+};
 
 export default function RootLayout({
   children,
@@ -60,7 +71,9 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${roboto.variable} font-roboto bg-theme-bg-primary text-theme-text-primary transition-colors duration-300`}>
+      <body
+        className={`${display.variable} ${body.variable} font-body bg-theme-bg-primary text-theme-text-primary antialiased transition-colors duration-300`}
+      >
         <NavBar />
         {children}
       </body>

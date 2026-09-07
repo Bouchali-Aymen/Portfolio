@@ -7,83 +7,124 @@ import grinding from "../../public/projects/grinding.png";
 import weather from "../../public/projects/weather.png";
 import farm from "../../public/projects/farm.png";
 import eventers from "../../public/projects/eventers.png";
-import connected from "../../public/projects/connected.png"
-import buildprompt from "../../public/projects/buildprompt.png"
+import connected from "../../public/projects/connected.png";
+import buildprompt from "../../public/projects/buildprompt.png";
+import zedLanding from "../../public/projects/zedacademy-landing.png";
+import zedPlatform from "../../public/projects/zedacademy-platform.png";
+import dataprep from "../../public/projects/dataprep.png";
 
+/**
+ * Personal / open-source style projects shown in the portfolio.
+ */
 export const projects: project[] = [
   {
-    image: e_com,
-    title: "Shopin",
+    image: dataprep,
+    title: "DataPrep",
     description:
-      "A web application to present my skills, the projects I have worked on, and more information about me.Built using TypeScript,Nextjs,Pure CSS",
-    url: "https://github.com/Bouchali-Aymen/E-commerce-website",
-  },
-  {
-    image: portfolio,
-    title: "Portfolio",
-    description:
-      "An e-commerce website for stylish and affordable clothing, featuring easy navigation and friendly user interface,with admine panel.Built using Nextjs,Pure CSS for frontend and Nodejs,Expressjs,MongoDB for backend",
-    url: "https://github.com/Bouchali-Aymen/Portfolio ",
-  },
-  {
-    image: ocean,
-    title: "Ocean",
-    description:
-      "A visually engaging landing page showcasing the services and details of Ocean Company. Built with TypeScript, Next.js, and Tailwind CSS, the page delivers a clean, responsive design with smooth user interactions, ensuring an optimal browsing experience for visitors.",
-    url: "https://github.com/Bouchali-Aymen/Landing-Page",
-  },
-  {
-    image: ldrsi,
-    title: "LRDSI",
-    description:
-      "Dynamic website to present the LRDSI research laboratory of the Computer Science department,as well as its products and scientific activities,I was responsible of the backend.Built using HTML,CSS,JS for frontend and PHP,MySQL for backend",
-    url: "https://github.com/Bouchali-Aymen/LRDSI",
+      "Image annotation workspace for computer-vision datasets — review detections, draw and correct bounding boxes, and export labels for training. Next.js frontend with a FastAPI backend running a custom YOLO detector for livestock imagery.",
+    url: "",
+    tags: ["Next.js", "FastAPI", "YOLO", "Computer Vision"],
   },
   {
     image: grinding,
     title: "Grinding",
     description:
-      "Grinding is an online platform designed to sell digital courses across various categories, offering seamless online payments through the Stripe gateway. The platform is built with a modern tech stack, utilizing Next.js and Tailwind CSS for a responsive and intuitive frontend, while Strapi CMS powers the backend for flexible content management. For secure and streamlined user authentication, Clerk is integrated, providing a robust login experience.",
+      "Course marketplace with Stripe checkout, Strapi-managed content, and Clerk authentication — a complete learning commerce experience on Next.js and Tailwind CSS.",
     url: "https://github.com/Bouchali-Aymen/Grinding",
+    tags: ["Next.js", "Tailwind", "Strapi", "Stripe", "Clerk"],
+  },
+  {
+    image: e_com,
+    title: "Shopin",
+    description:
+      "Apparel e-commerce storefront with an admin panel for catalog and order management. Next.js on the client; Node.js, Express, and MongoDB on the server.",
+    url: "https://github.com/Bouchali-Aymen/E-commerce-website",
+    tags: ["Next.js", "Node.js", "Express", "MongoDB"],
+  },
+  {
+    image: ocean,
+    title: "Ocean",
+    description:
+      "Corporate marketing site for Ocean Company — a responsive TypeScript and Next.js landing experience styled with Tailwind CSS.",
+    url: "https://github.com/Bouchali-Aymen/Landing-Page",
+    tags: ["Next.js", "TypeScript", "Tailwind"],
+  },
+  {
+    image: ldrsi,
+    title: "LRDSI",
+    description:
+      "Institutional website for a university research laboratory. Owned the PHP and MySQL backend powering publications, products, and scientific activities.",
+    url: "https://github.com/Bouchali-Aymen/LRDSI",
+    tags: ["PHP", "MySQL", "JavaScript"],
   },
   {
     image: weather,
     title: "Weather App",
     description:
-      "A weather web app built using Next.js, TypeScript, and pure CSS, using the OpenWeatherMap API to display real-time weather data for different locations.",
+      "Location-based weather client built with Next.js and TypeScript, integrating the OpenWeatherMap API for live conditions.",
     url: "https://github.com/Bouchali-Aymen/Weather-Web-Application",
+    tags: ["Next.js", "TypeScript", "API"],
   },
-
+  {
+    image: portfolio,
+    title: "Portfolio",
+    description:
+      "This site — a personal showcase of experience, projects, and technical focus, implemented with Next.js, TypeScript, and Tailwind CSS.",
+    url: "https://github.com/Bouchali-Aymen/Portfolio",
+    tags: ["Next.js", "TypeScript", "Tailwind"],
+  },
 ];
 
+/**
+ * Client / company projects from professional roles.
+ */
 export const pro_projects: project[] = [
   {
-    image: eventers,
-    title: "Eventers",
+    image: zedPlatform,
+    title: "Zed Academy Platform",
     description:
-      "Eventers is a full-stack platform designed to simplify event organization, contract management, and real-time interactions. I contributed to both the frontend and backend, focusing on building scalable, interactive features.",
-    url:"",
+      "Production learning platform serving baccalaureate students nationwide: catalog, enrollment, payments, and administrative tools on Next.js with Firebase Auth, Firestore, Cloud Functions, and Storage.",
+    url: "https://web.zedacademy.net",
+    tags: ["Next.js", "Firebase", "TypeScript", "EdTech"],
   },
   {
-    image: connected,
-    title: "Connected Algeria",
+    image: zedLanding,
+    title: "Zed Academy Landing",
     description:
-      "Connected Algeria is a multilingual event platform developed for the Ministry of Telecommunications to host the Connected Algeria 2025 initiative. It provides registration, program scheduling, and content access for participants, while also supporting networking between stakeholders. I contributed to building a responsive, user-friendly interface and ensuring the platform could scale for a national-level audience.",
-    url: "https://connectedalgeria.dz/"
+      "Public-facing site for Zed Academy — an RTL Arabic marketing experience that presents the product, outcomes, and conversion flows. Implemented with Next.js and Tailwind CSS.",
+    url: "https://zedacademy.net",
+    tags: ["Next.js", "Tailwind CSS", "RTL"],
   },
   {
     image: buildprompt,
     title: "BuildPrompt",
     description:
-      "BuildPrompt is a SaaS platform that leverages AI to analyze documents and provide actionable insights. I contributed to the frontend development, designing and implementing responsive interfaces with Next.js, Nuxt.js, and TailwindCSS, while collaborating closely with product and backend teams to deliver a consistent and intuitive user experience.",
-    url: "https://connectedalgeria.dz/"
+      "Frontend contribution to an AI SaaS that turns documents into actionable insights. Built responsive interfaces in Next.js and Nuxt.js with Tailwind CSS.",
+    url: "",
+    tags: ["Next.js", "Nuxt.js", "Tailwind", "AI"],
   },
-    {
+  {
+    image: connected,
+    title: "Connected Algeria",
+    description:
+      "National event platform for the Ministry of Telecommunications: multilingual registration, programming, and stakeholder networking for Connected Algeria 2025.",
+    url: "https://connectedalgeria.dz/",
+    tags: ["Next.js", "Multilingual", "Events"],
+  },
+  {
+    image: eventers,
+    title: "Eventers",
+    description:
+      "Platform for organizing events, managing contracts, and supporting real-time collaboration. Contributed across the frontend and backend feature set.",
+    url: "",
+    tags: ["Full Stack", "Realtime", "Events"],
+  },
+  {
     image: farm,
     title: "Mazraati",
     description:
-      "Developed an end-to-end web application solution to help a client firm efficiently manage their farm operations. Built using Next.js,CSS for forntend and Node.js and Express.js and MySQL for backend ",
+      "Operations system for a commercial farm — inventory, workflows, and day-to-day management — with a Next.js client and a Node.js, Express, and MySQL backend.",
     url: "https://github.com/Bouchali-Aymen/Mazraati",
+    tags: ["Next.js", "Node.js", "Express", "MySQL"],
   },
-
-] 
+];

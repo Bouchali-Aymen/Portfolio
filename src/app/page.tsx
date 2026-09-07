@@ -1,72 +1,47 @@
 "use client";
 
 import Landing from "@/components/Landing";
-
 import Techno from "@/components/Techno";
 import Contact from "@/components/Contact";
-
 import Footer from "@/components/Footer";
-import { ChevronsDown, ChevronsUp } from "lucide-react";
-import { useEffect, useState } from "react";
 import Experience from "@/components/Experience";
 import Projects from "@/components/PersonalProjects";
-import ProProjects from "@/components/ProProjects";
+import { ArrowUp } from "lucide-react";
+import { useEffect, useState } from "react";
 
+/**
+ * Portfolio home: hero → experience → projects → skills → contact.
+ */
 export default function Home() {
-  const [ChangeArrow, setChangeArrow] = useState(false);
+  const [showTop, setShowTop] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setChangeArrow(true);
-      } else {
-        setChangeArrow(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    const handleScroll = () => setShowTop(window.scrollY > 400);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleSmoothScroll = (targetId: string) => {
-    const element = document.getElementById(targetId);
-    if (element) {
-      window.scrollTo({
-        top: element.offsetTop,
-        behavior: "smooth",
-      });
-    }
-  };
-
   return (
-    <div className="bg-theme-bg-primary relative">
-      <div id="navbar">
-        <Landing />
-      </div>
-      <Projects />
-      <ProProjects />
+    <div className="page-atmosphere relative">
+      <Landing />
       <Experience />
+      <Projects />
       <Techno />
       <Contact />
       <Footer />
-      <div className="fixed bottom-3 w-full flex items-center justify-center">
-        <div className="bg-theme-card-bg border border-theme-card-border w-[45px] h-[45px] rounded-full flex items-center justify-center cursor-pointer hover:border-theme-accent transition-colors">
-          <div
-            onClick={() =>
-              handleSmoothScroll(ChangeArrow ? "landing" : "footer")
-            }
-          >
-            {ChangeArrow ? (
-              <ChevronsUp className="arrow-down text-theme-text-primary" />
-            ) : (
-              <ChevronsDown className="arrow-down text-theme-text-primary" />
-            )}
-          </div>
-        </div>
-      </div>
+
+      {showTop && (
+        <button
+          type="button"
+          onClick={() =>
+            window.scrollTo({ top: 0, behavior: "smooth" })
+          }
+          className="fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center border border-theme-border bg-theme-card-bg text-theme-text-primary shadow-lg backdrop-blur-md transition-colors hover:border-theme-accent hover:text-theme-accent"
+          aria-label="Back to top"
+        >
+          <ArrowUp size={18} />
+        </button>
+      )}
     </div>
   );
 }

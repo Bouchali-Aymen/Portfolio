@@ -1,162 +1,147 @@
-"use client"
-import { useState } from "react"
-import { Menu, X, Github, Linkedin, Facebook, Sun, Moon } from "lucide-react"
-import Link from "next/link"
-import { useTheme } from "../hooks/useTheme"
+"use client";
 
+import { useEffect, useState } from "react";
+import { Menu, X, Github, Linkedin, Sun, Moon } from "lucide-react";
+import Link from "next/link";
+import { useTheme } from "../hooks/useTheme";
+
+const navLinks = [
+  { href: "#experience", label: "Experience" },
+  { href: "#projects", label: "Projects" },
+  { href: "#skills", label: "Skills" },
+  { href: "#contact", label: "Contact" },
+];
+
+/**
+ * Fixed top navigation with brand mark, section links, theme toggle, and socials.
+ */
 export const NavBar = () => {
-  const [toggleMenu, setToggleMenu] = useState(false)
-  const { theme, toggleTheme, mounted } = useTheme()
+  const [toggleMenu, setToggleMenu] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const { theme, toggleTheme, mounted } = useTheme();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   if (!mounted) {
-    return null
+    return (
+      <nav className="fixed top-0 z-50 h-16 w-full bg-theme-bg-primary/70 backdrop-blur-md" />
+    );
   }
 
   return (
-    <nav className="fixed top-0 w-full backdrop-blur-sm z-50 bg-theme-bg-primary/80">
-      <div className="max-w-6xl mx-auto px-6 pt-4">
-        <div className="flex justify-between items-center h-16">
-          <Link href="#landing" className="text-xl font-bold text-theme-text-primary">
-            Aymen
-          </Link>
+    <nav
+      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+        scrolled
+          ? "border-b border-theme-border bg-theme-bg-primary/80 backdrop-blur-xl shadow-sm"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="container mx-auto flex h-16 items-center justify-between">
+        <Link
+          href="#landing"
+          className="font-display text-xl font-bold tracking-tight text-theme-text-primary"
+        >
+          Aymen<span className="text-theme-accent">.</span>
+        </Link>
 
-          <div className="hidden md:flex items-center space-x-8">
-            <Link href="#projects" className="text-theme-text-primary hover:text-theme-accent transition-colors">
-              Projects
-            </Link>
-            <Link href="#pro-projects" className="text-theme-text-primary hover:text-theme-accent transition-colors">
-              Pro Projects
-            </Link>
-            <Link href="#technologies" className="text-theme-text-primary hover:text-theme-accent transition-colors">
-              Technologies
-            </Link>
-            <Link href="#contact" className="text-theme-text-primary hover:text-theme-accent transition-colors">
-              Contact
-            </Link>
-            <Link href="#experience" className="text-theme-text-primary hover:text-theme-accent transition-colors">
-              Experience
-            </Link>
-          </div>
-
-          <div className="hidden md:flex items-center space-x-4">
-            {/* Theme Toggle Button */}
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-theme-card-bg border border-theme-card-border text-theme-text-primary hover:text-theme-accent hover:border-theme-accent transition-all duration-200"
-              aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-            >
-              {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
-            </button>
-
+        <div className="hidden items-center gap-8 md:flex">
+          {navLinks.map((link) => (
             <Link
-              href="https://github.com/Bouchali-Aymen"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-theme-text-primary hover:text-theme-accent transition-colors"
+              key={link.href}
+              href={link.href}
+              className="text-sm font-medium text-theme-text-secondary transition-colors hover:text-theme-accent"
             >
-              <Github size={20} />
+              {link.label}
             </Link>
-            <Link
-              href="https://www.linkedin.com/in/aymen-bouchali-890b85263/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-theme-text-primary hover:text-theme-accent transition-colors"
-            >
-              <Linkedin size={20} />
-            </Link>
-            <Link
-              href="https://www.facebook.com/profile.php?id=100008749845516"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-theme-text-primary hover:text-theme-accent transition-colors"
-            >
-              <Facebook size={20} />
-            </Link>
-          </div>
-
-          <button onClick={() => setToggleMenu(!toggleMenu)} className="md:hidden text-theme-text-primary hover:text-theme-accent">
-            {toggleMenu ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          ))}
         </div>
 
-        {toggleMenu && (
-          <div className="md:hidden py-4 border-t border-theme-border bg-theme-bg-primary">
-            <div className="flex flex-col space-y-4">
-              <Link
-                href="#projects"
-                className="text-theme-text-primary hover:text-theme-accent transition-colors"
-                onClick={() => setToggleMenu(false)}
-              >
-                Projects
-              </Link>
-              <Link
-                href="#pro-projects"
-                className="text-theme-text-primary hover:text-theme-accent transition-colors"
-                onClick={() => setToggleMenu(false)}
-              >
-                Pro Projects
-              </Link>
-              <Link
-                href="#technologies"
-                className="text-theme-text-primary hover:text-theme-accent transition-colors"
-                onClick={() => setToggleMenu(false)}
-              >
-                Technologies
-              </Link>
-              <Link
-                href="#contact"
-                className="text-theme-text-primary hover:text-theme-accent transition-colors"
-                onClick={() => setToggleMenu(false)}
-              >
-                Contact
-              </Link>
-              
-              {/* Theme Toggle Button for Mobile */}
-              <button
-                onClick={() => {
-                  toggleTheme()
-                  setToggleMenu(false)
-                }}
-                className="flex items-center space-x-2 text-theme-text-primary hover:text-theme-accent transition-colors"
-              >
-                {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
-                <span>Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode</span>
-              </button>
+        <div className="hidden items-center gap-3 md:flex">
+          <button
+            onClick={toggleTheme}
+            className="rounded-md border border-theme-border p-2 text-theme-text-primary transition-colors hover:border-theme-accent hover:text-theme-accent"
+            aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+          >
+            {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
+          </button>
+          <Link
+            href="https://github.com/Bouchali-Aymen"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-theme-text-secondary transition-colors hover:text-theme-accent"
+            aria-label="GitHub"
+          >
+            <Github size={18} />
+          </Link>
+          <Link
+            href="https://www.linkedin.com/in/aymen-bouchali-890b85263/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-theme-text-secondary transition-colors hover:text-theme-accent"
+            aria-label="LinkedIn"
+          >
+            <Linkedin size={18} />
+          </Link>
+        </div>
 
-              <div className="flex items-center space-x-4 pt-4">
-                <Link
-                  href="https://github.com/Bouchali-Aymen"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-theme-text-primary hover:text-theme-accent transition-colors"
-                >
-                  <Github size={20} />
-                </Link>
-                <Link
-                  href="https://www.linkedin.com/in/aymen-bouchali-890b85263/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-theme-text-primary hover:text-theme-accent transition-colors"
-                >
-                  <Linkedin size={20} />
-                </Link>
-                <Link
-                  href="https://www.facebook.com/profile.php?id=100008749845516"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-theme-text-primary hover:text-theme-accent transition-colors"
-                >
-                  <Facebook size={20} />
-                </Link>
-              </div>
+        <button
+          onClick={() => setToggleMenu(!toggleMenu)}
+          className="text-theme-text-primary md:hidden"
+          aria-label="Toggle menu"
+        >
+          {toggleMenu ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {toggleMenu && (
+        <div className="border-t border-theme-border bg-theme-bg-primary/95 backdrop-blur-xl md:hidden">
+          <div className="container flex flex-col gap-4 py-5">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-theme-text-primary transition-colors hover:text-theme-accent"
+                onClick={() => setToggleMenu(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <button
+              onClick={() => {
+                toggleTheme();
+                setToggleMenu(false);
+              }}
+              className="flex items-center gap-2 text-theme-text-primary"
+            >
+              {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
+              <span>{theme === "light" ? "Dark" : "Light"} mode</span>
+            </button>
+            <div className="flex gap-4 pt-2">
+              <Link
+                href="https://github.com/Bouchali-Aymen"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github size={20} />
+              </Link>
+              <Link
+                href="https://www.linkedin.com/in/aymen-bouchali-890b85263/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Linkedin size={20} />
+              </Link>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </nav>
-  )
-}
+  );
+};
 
-export default NavBar
-
-
+export default NavBar;

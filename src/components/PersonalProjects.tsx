@@ -1,98 +1,101 @@
 "use client";
-import { useRef, useEffect, useState } from "react";
-import { projects } from "../constants/projects";
-import ProjectBox from "./project_box";
-import { MoveRight, MoveLeft } from "lucide-react";
 
-export const Projects = () => {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+import { useEffect, useRef, useState } from "react";
+import { projects, pro_projects } from "@/constants/projects";
+import ProjectBox from "./project_box";
+
+type Tab = "professional" | "personal";
+
+/**
+ * Unified projects section with professional / personal tabs and a responsive grid.
+ */
+const ProjectsSection = () => {
+  const [tab, setTab] = useState<Tab>("professional");
   const [isVisible, setIsVisible] = useState(false);
   const animationRef = useRef<HTMLDivElement>(null);
+
+  const list = tab === "professional" ? pro_projects : projects;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
+          if (entry.isIntersecting) setIsVisible(true);
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.08 }
     );
 
     const currentRef = animationRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
+    if (currentRef) observer.observe(currentRef);
     return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
+      if (currentRef) observer.unobserve(currentRef);
     };
   }, []);
 
-  const handleScrollLeft = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({
-        left: -300,
-        behavior: "smooth",
-      });
-    }
-  };
-
-  const handleScrollRight = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({
-        left: 300,
-        behavior: "smooth",
-      });
-    }
-  };
-
   return (
-    <div
-      className={`pb-section_padding w-full relative  flex flex-col justify-center items-center gap-[40px] projects-slide-in ${
-        isVisible ? "projects-visible" : ""
-      }`}
-      ref={animationRef}
+    <section
       id="projects"
+      ref={animationRef}
+      className="py-section_padding"
     >
-      <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent mb-4">
-          Personal Projects
-        </h2>
-        <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto rounded-full"></div>
-        <p className="text-theme-text-muted mt-6 text-lg max-w-2xl mx-auto">
-          Some personal projects I have worked on.{" "}
-        </p>
-      </div>{" "}
-      <div className="container mb-9"></div>
-      <div
-        className="flex flex-row gap-x-6 overflow-x-auto overflow-y-hidden snap-mandatory relative py-[20px] container no-scrollbar"
-        ref={scrollContainerRef}
-      >
-        {projects.map((project, index) => {
-          return <ProjectBox key={index} {...project} />;
-        })}
+      <div className="container mx-auto">
+        <div
+          className={`mb-10 flex flex-col gap-6 md:mb-14 md:flex-row md:items-end md:justify-between ${
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+          } transition-all duration-700`}
+        >
+          <div>
+            <p className="section-eyebrow">Selected work</p>
+            <h2 className="section-title">Projects</h2>
+            <p className="section-lede">
+              Selected client engagements and personal builds — from EdTech and
+              events to commerce and research tooling.
+            </p>
+          </div>
+
+          <div
+            className="inline-flex border border-theme-border p-1"
+            role="tablist"
+            aria-label="Project type"
+          >
+            {(
+              [
+                { id: "professional", label: "Professional" },
+                { id: "personal", label: "Personal" },
+              ] as const
+            ).map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                role="tab"
+                aria-selected={tab === item.id}
+                onClick={() => setTab(item.id)}
+                className={`px-4 py-2 text-sm font-medium transition-colors ${
+                  tab === item.id
+                    ? "bg-theme-accent text-white"
+                    : "text-theme-text-secondary hover:text-theme-text-primary"
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div
+          id={tab === "professional" ? "pro-projects" : undefined}
+          className={`grid gap-6 sm:grid-cols-2 xl:grid-cols-3 ${
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+          } transition-all delay-100 duration-700`}
+        >
+          {list.map((project) => (
+            <ProjectBox key={project.title} {...project} />
+          ))}
+        </div>
       </div>
-      <div
-        className="flex items-center justify-center absolute bg-theme-card-bg border border-theme-card-border top-1/2 right-0 mr-[20px] cursor-pointer p-[10px] rounded-full hover:border-theme-accent transition-colors"
-        onClick={handleScrollRight}
-      >
-        <MoveRight className="arrows-bounce text-theme-text-primary" />
-      </div>
-      <div
-        className="flex items-center justify-center absolute bg-theme-card-bg border border-theme-card-border top-1/2 left-0 ml-[20px] cursor-pointer p-[10px] rounded-full hover:border-theme-accent transition-colors"
-        onClick={handleScrollLeft}
-      >
-        <MoveLeft className="arrows-bounce text-theme-text-primary" />
-      </div>
-    </div>
+    </section>
   );
 };
 
-export default Projects;
-
-
+export default ProjectsSection;

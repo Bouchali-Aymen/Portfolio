@@ -1,192 +1,208 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { FormEvent, useEffect, useRef, useState } from "react";
+import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
+import toast, { Toaster } from "react-hot-toast";
 
+const contactInfo = [
+  {
+    icon: Mail,
+    label: "Email",
+    value: "aymenbouchali14@gmail.com",
+    href: "mailto:aymenbouchali14@gmail.com",
+  },
+  {
+    icon: Phone,
+    label: "Phone",
+    value: "+213 5 42 62 96 45",
+    href: "tel:+213542629645",
+  },
+  {
+    icon: MapPin,
+    label: "Location",
+    value: "Blida, Algeria",
+    href: "#",
+  },
+];
+
+/**
+ * Contact section with info links and a message form wired to /api/send.
+ */
 const Contact = () => {
   const animationRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: "Email",
-      value: "aymenbouchali14@gmail.com",
-      href: "mailto:aymenbouchali14@gmail.com",
-    },
-    {
-      icon: Phone,
-      label: "Phone",
-      value: "+213 5 42 62 96 45",
-      href: "tel:+213542629645",
-    },
-    {
-      icon: MapPin,
-      label: "Location",
-      value: "Blida, Algeria",
-      href: "#",
-    },
-  ];
+  const [sending, setSending] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
+          if (entry.isIntersecting) setIsVisible(true);
         });
       },
       { threshold: 0.1 }
     );
 
     const currentRef = animationRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
+    if (currentRef) observer.observe(currentRef);
     return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
+      if (currentRef) observer.unobserve(currentRef);
     };
   }, []);
 
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const payload = {
+      name: String(formData.get("name") || ""),
+      email: String(formData.get("email") || ""),
+      subject: String(formData.get("subject") || ""),
+      message: String(formData.get("message") || ""),
+    };
+
+    setSending(true);
+    try {
+      const res = await fetch("/api/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error("Failed to send");
+      toast.success("Message sent — thanks for reaching out.");
+      form.reset();
+    } catch {
+      toast.error("Could not send message. Try emailing me directly.");
+    } finally {
+      setSending(false);
+    }
+  };
+
   return (
     <section
-      className={`min-h-screen container py-20 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}
-      ref={animationRef}
       id="contact"
+      ref={animationRef}
+      className="py-section_padding"
     >
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-32">
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent mb-4">
-            Let&#39;s Connect
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto rounded-full"></div>
-          <p className="text-theme-text-muted mt-6 text-lg max-w-2xl mx-auto">
-            Ready to bring your ideas to life? I&#39;d love to hear about your
-            project and explore how we can work together.
+      <Toaster position="bottom-center" />
+      <div className="container mx-auto max-w-6xl">
+        <div
+          className={`mb-14 transition-all duration-700 ${
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+          }`}
+        >
+          <p className="section-eyebrow">Contact</p>
+          <h2 className="section-title">Let&apos;s build something</h2>
+          <p className="section-lede">
+            Open to roles, freelance, and collaborations. Send a note and I&apos;ll
+            get back to you.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Contact Information */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-bold text-theme-text-primary mb-6">
-                Get in Touch
-              </h3>
-              <p className="text-theme-text-secondary leading-relaxed">
-                I&#39;m always open to discussing new opportunities, interesting
-                projects, and creative ideas. Feel free to reach out!
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              {contactInfo.map((info, index) => (
-                <a
-                  key={index}
-                  href={info.href}
-                  className="flex items-center space-x-4 p-4 bg-theme-card-bg border border-theme-card-border rounded-lg hover:border-theme-accent transition-colors group"
-                >
-                  <div className="p-3 bg-theme-accent/10 rounded-lg group-hover:bg-theme-accent/20 transition-colors">
-                    <info.icon className="w-6 h-6 text-theme-accent" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-theme-text-muted">{info.label}</p>
-                    <p className="text-theme-text-primary font-medium">
-                      {info.value}
-                    </p>
-                  </div>
-                </a>
-              ))}
-            </div>
+        <div
+          className={`grid gap-10 lg:grid-cols-2 lg:gap-16 ${
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+          } transition-all delay-100 duration-700`}
+        >
+          <div className="space-y-6">
+            {contactInfo.map((info) => (
+              <a
+                key={info.label}
+                href={info.href}
+                className="flex items-center gap-4 border border-theme-border p-4 transition-colors hover:border-theme-accent"
+              >
+                <div className="bg-theme-accent/10 p-3 text-theme-accent">
+                  <info.icon className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-wider text-theme-text-muted">
+                    {info.label}
+                  </p>
+                  <p className="font-medium text-theme-text-primary">{info.value}</p>
+                </div>
+              </a>
+            ))}
           </div>
 
-          {/* Contact Form */}
-          <div className="bg-theme-card-bg border border-theme-card-border rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-theme-text-primary mb-6">
-              Send a Message
-            </h3>
-            <form className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-theme-text-secondary mb-2"
-                  >
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    className="w-full px-4 py-3 bg-theme-bg-primary border border-theme-border rounded-lg text-theme-text-primary placeholder-theme-text-muted focus:outline-none focus:border-theme-accent transition-colors"
-                    placeholder="Your name"
-                    required
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-theme-text-secondary mb-2"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    className="w-full px-4 py-3 bg-theme-bg-primary border border-theme-border rounded-lg text-theme-text-primary placeholder-theme-text-muted focus:outline-none focus:border-theme-accent transition-colors"
-                    placeholder="your.email@example.com"
-                    required
-                  />
-                </div>
-              </div>
+          <form
+            onSubmit={handleSubmit}
+            className="surface-panel space-y-5 rounded-xl p-6 sm:p-8"
+          >
+            <div className="grid gap-5 sm:grid-cols-2">
               <div>
                 <label
-                  htmlFor="subject"
-                  className="block text-sm font-medium text-theme-text-secondary mb-2"
+                  htmlFor="name"
+                  className="mb-2 block text-sm font-medium text-theme-text-secondary"
                 >
-                  Subject
+                  Name
                 </label>
                 <input
                   type="text"
-                  id="subject"
-                  name="subject"
-                  className="w-full px-4 py-3 bg-theme-bg-primary border border-theme-border rounded-lg text-theme-text-primary placeholder-theme-text-muted focus:outline-none focus:border-theme-accent transition-colors"
-                  placeholder="What's this about?"
+                  id="name"
+                  name="name"
                   required
+                  className="w-full border border-theme-border bg-theme-bg-primary px-4 py-3 text-theme-text-primary outline-none transition-colors placeholder:text-theme-text-muted focus:border-theme-accent"
+                  placeholder="Your name"
                 />
               </div>
               <div>
                 <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-theme-text-secondary mb-2"
+                  htmlFor="email"
+                  className="mb-2 block text-sm font-medium text-theme-text-secondary"
                 >
-                  Message
+                  Email
                 </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={6}
-                  className="w-full px-4 py-3 bg-theme-bg-primary border border-theme-border rounded-lg text-theme-text-primary placeholder-theme-text-muted focus:outline-none focus:border-theme-accent transition-colors resize-none"
-                  placeholder="Tell me about your project..."
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
                   required
-                ></textarea>
+                  className="w-full border border-theme-border bg-theme-bg-primary px-4 py-3 text-theme-text-primary outline-none transition-colors placeholder:text-theme-text-muted focus:border-theme-accent"
+                  placeholder="you@example.com"
+                />
               </div>
-              <button
-                type="submit"
-                className="w-full flex items-center justify-center px-8 py-4 bg-theme-accent text-white font-medium rounded-lg hover:bg-theme-accent-hover transition-colors"
+            </div>
+            <div>
+              <label
+                htmlFor="subject"
+                className="mb-2 block text-sm font-medium text-theme-text-secondary"
               >
-                <Send size={20} className="mr-2" />
-                Send Message
-              </button>
-            </form>
-          </div>
+                Subject
+              </label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                required
+                className="w-full border border-theme-border bg-theme-bg-primary px-4 py-3 text-theme-text-primary outline-none transition-colors placeholder:text-theme-text-muted focus:border-theme-accent"
+                  placeholder="What's this about?"
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="message"
+                className="mb-2 block text-sm font-medium text-theme-text-secondary"
+              >
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows={5}
+                required
+                className="w-full resize-none border border-theme-border bg-theme-bg-primary px-4 py-3 text-theme-text-primary outline-none transition-colors placeholder:text-theme-text-muted focus:border-theme-accent"
+                placeholder="Tell me about your project..."
+              />
+            </div>
+            <button type="submit" disabled={sending} className="btn-primary w-full sm:w-auto">
+              {sending ? (
+                <Loader2 size={18} className="animate-spin" />
+              ) : (
+                <Send size={18} />
+              )}
+              {sending ? "Sending..." : "Send message"}
+            </button>
+          </form>
         </div>
       </div>
     </section>
@@ -194,5 +210,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
-
